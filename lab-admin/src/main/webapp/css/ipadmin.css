@@ -1,0 +1,161 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	font-family: sans-serif;
+	background-color:#1E6753;
+	font-size:15px;
+}
+
+input[type="button"], input[type="submit"] {
+	width: 120px;
+	cursor: pointer;
+	text-align: center;	
+}
+
+input[type="button"]:hover, input[type="submit"]:hover {
+	background-color: blue;
+}
+
+li {
+	display: inline-block;
+	list-style-type: none;
+}
+
+div#home {
+	margin-top: 50px;
+	margin-left: 100px;
+}
+
+p.main-message {
+	font-family: verdana,arial,sans-serif;
+	font-size:15px;
+	font-weight: bold;
+	color:#333333;
+	padding-top: 10px;	
+	padding-bottom: 5px;	
+}
+
+p.detail-message {
+	font-family: verdana,arial,sans-serif;
+	font-size:10px;
+	font-weight: normal;
+	color:#333333;
+}
+
+div.ip-operation {
+	font-family: verdana,arial,sans-serif;
+	font-size:15px;
+	color:#333333;
+	border-width: 1px;
+	padding-top: 50px;
+	padding-left: 50px;
+	width: 100px;
+	float: left;	
+}
+
+div.ip-main {
+	border-width: 1px;
+	padding-left: 50px;
+	margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+table.imagetable {
+	font-family: verdana,arial,sans-serif;
+	font-size:15px;
+	color:#333333;
+	border-width: 1px;
+	border-collapse: collapse;
+}
+
+table.imagetable thead th {
+	background-color:#b5cfd2;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+}
+
+table.imagetable tbody tr {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color:#53ac79;
+}
+
+table.imagetable tbody tr:hover {
+	background-color:#eeddee;
+}
+
+table.imagetable td {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #666666;
+}
+
+table.create-ip {
+	font-family: verdana,arial,sans-serif;
+	font-size:15px;
+	color:#333333;
+	border-width: 1px;
+	border-collapse: collapse;
+}
+
+table.create-ip tbody tr {
+	background-color:#53ac79;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+}
+
+table.create-ip tbody th {
+	text-align: right;
+}
+
+table.create-ip td {
+	text-align: left;
+}
+
+.ip-byte {
+	width: 40px;
+	background-color: #eeddee;
+}
+
+.ip-description {
+	width: 250px;
+	background-color:#eeddee;
+}
+
+div#status-messages {
+	padding-top: 30px;
+	font-weight: bolder;
+}
+
+a.button-like {
+	display: inline-block;
+	text-decoration: none;
+	color:#333333;
+	background-color: buttonface;
+	padding-left: 3px;
+	padding-right: 3px;
+	border-width: 1px;
+}
+
+a.row-like {
+	display: inline-block;
+	text-decoration: none;
+	color:#333333;
+	width: 100%;
+}
+
+
+tr.free-ip-class {
+	background-color:#53ac79;
+}
+
+table.imagetable tbody tr.used-ip-class {
+	background-color:#408080;
+}
