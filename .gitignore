@@ -1,3 +1,10 @@
 
+# Maven generated files
 lab-admin/target/
 lab-admin/WebContent/
+
+# Eclipse configuration files
+lab-admin/.classpath
+lab-admin/.settings/
+lab-admin/.project
+
