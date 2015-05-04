@@ -174,7 +174,7 @@ TODO:
 - Substitute all println by LOG messages
 
  
- DATABASE SCHEMA
+DATABASE SCHEMA
  
  
 CREATE TABLE ip_addresses_tbl (
@@ -202,5 +202,54 @@ CREATE TABLE virtual_machines_roles_tbl (
 
 ---------------------------
 
-Created labadmin repository in GitHub (felicio.vaz@gmail.com)
+Created labadmin repository in GitHub (felicio.vaz@gmail.com, username: feliciovaz)
+
+$ git remote add origin https://github.com/feliciovaz/labadmin.git
+$ git push -u origin master
+
+---------------------------
+
+Anatomy of this servlet web application
+
+- request mapping can be made through the web deployment descriptor file or through the @WebServlet annotation of a servlet class
+There are currently two servlet classes:
+	- IpAdmin             : supports all operations regarding the IP addresses administration.
+	- VirtualMachineAdmin : supports all operations regarding the VM administration.
+	
+- typically a servlet needs a database support class. This should be injected to the servlet, but for now it is being instantiated 
+on the servlet constructor. This is called a closely coupled dependency.
+It should be implemented as losely coupled dependency, in the future this can be done with Spring dependency injection. To do this 
+an interface should be defined and referenced in the servlet.
+But what interface should be supported by such an interface? Maybe it is better to use an ORM like Hibernate.
+
+In this moment the LabDatabase class in fact just supports the VirtualMachineAdmin servlet, IpAdmin servlet does not access it. In 
+fact the LabDatabase is instantiated by the VirtualMachineAdmin servlet.
+	
+The IpAdmin servlet implements its own methods to access the database. In fact the connection string to the database is duplicated
+in both servlets.
+
+For sure there should be just a singleton that holds the access to the database. But I am not sure what interface it should provided
+besides the: openDb(), closeDb(), isOpen().
+
+- The structure of the servlets is:
+		- for doGet() and doPost()
+			- get some parameters from the request to check what operation is to be performed
+			- do the operation which may be:
+				- an access to the database 
+				- preparation for the next page to be presented, this is basically setting attributes to be read by JSPs (mainly
+				  through EL expressions)
+				- or both
+			- call the next page rendering (request.getRequestDispatcher(jspPage).forward(request, response)
+
+
+---------------------------
+05-10-2014 List what needs to be done in the application
+
+-> Transform the application to be a Spring Application
+To do this maybe it is better to create a Spring app from the beggining.
+See the the spring-init project...
+c:\felicio\projects\12-first-spring-webapp
+
+
+
 

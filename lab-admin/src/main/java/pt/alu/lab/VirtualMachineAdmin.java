@@ -162,9 +162,6 @@ public class VirtualMachineAdmin extends HttpServlet {
 										request.getParameter("vmOwner"));
 		String status = database.modifyVM(vm);
 		if (status.equals("ok")) {
-			//request.setAttribute("backUrl", "vm");
-			//request.setAttribute("message", "The Virtual Machine was modified successfuly: " + vm.getName());
-			//request.getRequestDispatcher(operationStatusPageJsp).forward(request, response);
 			response.sendRedirect("vm");
 			return;
 		} else {

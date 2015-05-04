@@ -27,20 +27,20 @@ public class LabDatabase {
 
 	public Boolean addRoleToVM(String vmName, String vmRole) {
 		Boolean status = Boolean.FALSE;
-		String createRoleStatement = "insert into virtual_machines_roles_tbl (role, vm_name) values(?, ?)";
+		String sql = "insert into virtual_machines_roles_tbl (role, vm_name) values(?, ?)";
 		CallableStatement stmt = null;
 		try {
 			openDb();		
-			stmt = this.connection.prepareCall(createRoleStatement);
+			stmt = this.connection.prepareCall(sql);
 			stmt.setString(1, vmRole);
 			stmt.setString(2, vmName);
 			stmt.executeUpdate();
 			status = Boolean.TRUE;
 		} catch (SQLException ex) {
-			LOG.error("SQL exception executing sql statement: {}", createRoleStatement);
+			LOG.error("SQL exception executing sql statement: {}", sql);
 			LOG.error(ex.getMessage());
 		} catch (Exception ex) {
-			LOG.error("Unknown exception executing sql statement: {}", createRoleStatement);
+			LOG.error("Unknown exception executing sql statement: {}", sql);
 			LOG.error(ex.getMessage());
 		} finally {
 			if (stmt!=null) {
@@ -55,19 +55,19 @@ public class LabDatabase {
 	}
 	
 	public String createVM(VirtualMachine vm) {
-		String createVMStatement = "insert into virtual_machines_tbl (name, description, os, owner) values(?, ?, ?, ?)";
+		String sql = "insert into virtual_machines_tbl (name, description, os, owner) values(?, ?, ?, ?)";
 		CallableStatement stmt = null;
 		String status = "ok";
 		try {
 			openDb();		
-			stmt = this.connection.prepareCall(createVMStatement);
+			stmt = this.connection.prepareCall(sql);
 			stmt.setString(1, vm.getName());
 			stmt.setString(2, vm.getDescription());
 			stmt.setString(3, vm.getOs());
 			stmt.setString(4, vm.getOwner());
 			stmt.executeUpdate();
 		} catch (SQLException ex) {
-			LOG.error("executing sql statement: {}", createVMStatement);
+			LOG.error("executing sql statement: {}", sql);
 			LOG.error(ex.getMessage());
 			status = ex.getMessage();
 		} catch (Exception ex) {
@@ -86,7 +86,7 @@ public class LabDatabase {
 	}
 	
 	public String modifyVM(VirtualMachine vm) {
-		String modifyVMStatement = "update virtual_machines_tbl set description=?, os=?, owner=? where name=?";
+		String sql = "update virtual_machines_tbl set description=?, os=?, owner=? where name=?";
 		CallableStatement stmt = null;
 		String status = "ok";
 		try {
@@ -94,14 +94,14 @@ public class LabDatabase {
 			openDb();
 			
 		
-			stmt = this.connection.prepareCall(modifyVMStatement);
+			stmt = this.connection.prepareCall(sql);
 			stmt.setString(4, vm.getName());
 			stmt.setString(1, vm.getDescription());
 			stmt.setString(2, vm.getOs());
 			stmt.setString(3, vm.getOwner());
 			stmt.executeUpdate();
 		} catch (SQLException ex) {
-			LOG.error("executing sql statement: {}", modifyVMStatement);
+			LOG.error("executing sql statement: {}", sql);
 			LOG.error(ex.getMessage());
 			status = ex.getMessage();
 		} catch (Exception ex) {
@@ -121,7 +121,7 @@ public class LabDatabase {
 	
 	public Boolean delRoleFromVM(int roleId) {
 		Boolean status = Boolean.FALSE;
-		String deleteRoleStatement = "delete from virtual_machines_roles_tbl where id=?";
+		String sql = "delete from virtual_machines_roles_tbl where id=?";
 		CallableStatement stmt = null;
 		boolean dbOpenFlag = false;
 		try {
@@ -129,14 +129,14 @@ public class LabDatabase {
 			openDb();
 			dbOpenFlag = true; // no exception opening the DB
 			
-			stmt = this.connection.prepareCall(deleteRoleStatement);
+			stmt = this.connection.prepareCall(sql);
 			stmt.setInt(1, roleId);
 			stmt.executeUpdate();
 			status = Boolean.TRUE;
 		} catch (Exception ex) {
 			LOG.error("could not delete role id: {}", roleId);
 			if (dbOpenFlag) {
-				LOG.error("executing sql statement: {}", deleteRoleStatement);
+				LOG.error("executing sql statement: {}", sql);
 				LOG.error(ex.getMessage());
 			}
 		} finally {
@@ -153,7 +153,7 @@ public class LabDatabase {
 	}
 	
 	public String deleteVM(String vmName) {
-		String deleteVMStatement = "delete from virtual_machines_tbl where name=?";
+		String sql = "delete from virtual_machines_tbl where name=?";
 		CallableStatement stmt = null;
 		String status = "ok";
 		try {
@@ -161,11 +161,11 @@ public class LabDatabase {
 			openDb();
 			
 		
-			stmt = this.connection.prepareCall(deleteVMStatement);
+			stmt = this.connection.prepareCall(sql);
 			stmt.setString(1, vmName);
 			stmt.executeUpdate();
 		} catch (SQLException ex) {
-			LOG.error("executing sql statement: {}", deleteVMStatement);
+			LOG.error("executing sql statement: {}", sql);
 			LOG.error(ex.getMessage());
 			status = ex.getMessage();
 		} catch (Exception ex) {
@@ -223,7 +223,7 @@ public class LabDatabase {
 	
 	public List<VirtualMachine> getVirtualMachines() {
 		List<VirtualMachine> virtualMachines = new ArrayList<VirtualMachine>();
-		String query = "select name, description, os, owner from virtual_machines_tbl";
+		String query = "select name, description, os, owner from virtual_machines_tbl order by name";
 		Statement statement=null;
 		ResultSet resultSet=null;
 

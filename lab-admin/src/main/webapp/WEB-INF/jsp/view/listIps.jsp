@@ -14,6 +14,7 @@
 	<form action="ip" method="get">
 		<input type="hidden" name="operation" value="showCreateIpForm">
 		<input type="submit" value="Add IP">
+		<input type="button" value="Back to main" onClick="location.href='/lab-admin'">
 	</form>
 </div>
 <div class="ip-main">

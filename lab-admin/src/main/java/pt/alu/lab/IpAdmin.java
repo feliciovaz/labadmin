@@ -116,9 +116,6 @@ public class IpAdmin extends HttpServlet {
 			// update IP in DB
 			String status = updateIpInDb(new IpAddress(ipAddress, ipIsBeingUsed, ipDescription));
 			if (status.isEmpty()) {
-				// successful modification of IP
-				//request.setAttribute("message", "Successfuly modified IP address: " + ipAddress);
-				//request.getRequestDispatcher(successfulOperationJsp).forward(request, response);
 				response.sendRedirect("ip");
 				return;
 			}
