@@ -243,13 +243,3 @@ besides the: openDb(), closeDb(), isOpen().
 
 
 ---------------------------
-05-10-2014 List what needs to be done in the application
-
--> Transform the application to be a Spring Application
-To do this maybe it is better to create a Spring app from the beggining.
-See the the spring-init project...
-c:\felicio\projects\12-first-spring-webapp
-
-
-
-
