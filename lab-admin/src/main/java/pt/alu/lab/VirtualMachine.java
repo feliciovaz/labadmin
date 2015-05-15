@@ -22,7 +22,7 @@ public class VirtualMachine {
 	}
 
 	public String getOwner() {
-		return owner;
+		return owner.toUpperCase();
 	}
 
 	public void setOwner(String owner) {
